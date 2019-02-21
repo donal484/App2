@@ -5,7 +5,7 @@
 }
 
 <div class="row">
-    <form ide="frmLogin" action="/" method="post">
+    <form id="frmLogin" action="/" method="post">
       <div class="col-lg-6 col-lg-offset-3">
           Usuario: <input type="text" name="user"/>
           Password: <input type="password" name="pwd"/>
@@ -16,6 +16,39 @@
     </form>
 
 </div>
-<script> 
+@section scripts
+{
+<script>
+    $(document).ready(function () { //Esto es Js pero es Jquery cuando el documento(index) este listo es decir cuando ya se haya cargado
+        //la funcionva a capturar dentro del documento alguien que se llame frmLogin y va a estar escuchando cuando en el formulario cuando se accione el evento submit
+        $("#frmLogin"), submit(function (e) {//La e representa el evento que se crea con el submit
+            e.preventDefault();
+            url = "@Url.Content("~/Acceso/Enter")";//Conduce a un metodo que se llama Enter
+            //La url se tiene que ir con unos parametros para que valide en la BD
+            parametros = $(this).serialize();//Con el this me refiero al documento actual en el que estoy
+            $.post(url, parametros, function (data)){
+
+                if (data == "1") {
+                    document.location.href = "@Url.Content("~/")";
+                } else {
+                    alert(data);
+                }
+            }
+
+
+        });
+
+
+
+
+
+
+    }); 
+
+
+
 
 </script>
+    
+    
+    }

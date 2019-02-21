@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="carcenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CITAS">
+          <Key>
+            <PropertyRef Name="ID_CITA" />
+          </Key>
+          <Property Name="ID_CITA" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FECHA_SOLICITUD" Type="datetime" Nullable="false" />
+          <Property Name="ESTADO_CITA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FECHA_CIERRE" Type="datetime" />
+          <Property Name="DIAGNOSTICO" Type="varchar" MaxLength="300" />
+          <Property Name="MOTIVO_CITA" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="ID_PERSONA_VEHICULO" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DOMINIOS">
+          <Key>
+            <PropertyRef Name="TIPO_DOMINIO" />
+            <PropertyRef Name="ID_DOMINIO" />
+          </Key>
+          <Property Name="TIPO_DOMINIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_DOMINIO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="VLR_DOMINIO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURAS">
+          <Key>
+            <PropertyRef Name="NUM_FACTURA" />
+          </Key>
+          <Property Name="NUM_FACTURA" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FECHA_FACTURA" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FOTOS">
+          <Key>
+            <PropertyRef Name="ID_FOTO" />
+          </Key>
+          <Property Name="ID_FOTO" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL_FOTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_CITA" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENSAJES">
+          <Key>
+            <PropertyRef Name="ID_MENSAJE" />
+          </Key>
+          <Property Name="ID_MENSAJE" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESC_MENSAJE" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="FECHA_MENSAJE" Type="datetime" Nullable="false" />
+          <Property Name="ID_CITA" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERSONA_VEHICULO">
+          <Key>
+            <PropertyRef Name="ID_PERSONA_VEHICULO" />
+          </Key>
+          <Property Name="ID_PERSONA_VEHICULO" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PLACA" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="IDENTIFICACION" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="ESTADO_PROP" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PERSONAS">
+          <Key>
+            <PropertyRef Name="IDENTIFICACION" />
+          </Key>
+          <Property Name="IDENTIFICACION" Type="numeric" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONO" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" />
+          <Property Name="CORREO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ESPECIALIDAD" Type="varchar" MaxLength="10" />
+          <Property Name="TIPO_PERSONA" Type="varchar" MaxLength="10" />
+          <Property Name="CONTRASENA" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ESTADO_PERSONA" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REPUESTOS">
+          <Key>
+            <PropertyRef Name="ID_REPUESTO" />
+          </Key>
+          <Property Name="ID_REPUESTO" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESC_MENSAJE" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SERVICIO_REPUESTO">
+          <Key>
+            <PropertyRef Name="ID_SERVICIO_REPUESTO" />
+          </Key>
+          <Property Name="ID_SERVICIO_REPUESTO" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CANTIDAD" Type="numeric" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="VALOR_REPUESTO" Type="numeric" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="ID_SERVICIO" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="ID_REPUESTO" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="ID_SERVICIO" />
+          </Key>
+          <Property Name="ID_SERVICIO" Type="numeric" Precision="5" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESC_SERVICIO" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="TIPO_SERVICIO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TIEMPO_ESTIMADO" Type="numeric" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="ESTADO_SERVICIO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="VALOR_SERVICIO" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="FECHA_SERVICIO" Type="datetime" Nullable="false" />
+          <Property Name="NUM_FACTURA" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_CITA" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VEHICULOS">
+          <Key>
+            <PropertyRef Name="PLACA" />
+          </Key>
+          <Property Name="PLACA" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="MARCA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MODELO" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="COLOR" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TIPO_VEHICULO" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CITAS_PER_VEH">
+          <End Role="PERSONA_VEHICULO" Type="Self.PERSONA_VEHICULO" Multiplicity="1" />
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA_VEHICULO">
+              <PropertyRef Name="ID_PERSONA_VEHICULO" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="ID_PERSONA_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FOTOS_CITA">
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="1" />
+          <End Role="FOTOS" Type="Self.FOTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITAS">
+              <PropertyRef Name="ID_CITA" />
+            </Principal>
+            <Dependent Role="FOTOS">
+              <PropertyRef Name="ID_CITA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENSAJES_CITA">
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="1" />
+          <End Role="MENSAJES" Type="Self.MENSAJES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITAS">
+              <PropertyRef Name="ID_CITA" />
+            </Principal>
+            <Dependent Role="MENSAJES">
+              <PropertyRef Name="ID_CITA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PER_VEH_PER">
+          <End Role="PERSONAS" Type="Self.PERSONAS" Multiplicity="1" />
+          <End Role="PERSONA_VEHICULO" Type="Self.PERSONA_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONAS">
+              <PropertyRef Name="IDENTIFICACION" />
+            </Principal>
+            <Dependent Role="PERSONA_VEHICULO">
+              <PropertyRef Name="IDENTIFICACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PER_VEH_VEH">
+          <End Role="VEHICULOS" Type="Self.VEHICULOS" Multiplicity="1" />
+          <End Role="PERSONA_VEHICULO" Type="Self.PERSONA_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICULOS">
+              <PropertyRef Name="PLACA" />
+            </Principal>
+            <Dependent Role="PERSONA_VEHICULO">
+              <PropertyRef Name="PLACA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERV_REP_REP">
+          <End Role="REPUESTOS" Type="Self.REPUESTOS" Multiplicity="1" />
+          <End Role="SERVICIO_REPUESTO" Type="Self.SERVICIO_REPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPUESTOS">
+              <PropertyRef Name="ID_REPUESTO" />
+            </Principal>
+            <Dependent Role="SERVICIO_REPUESTO">
+              <PropertyRef Name="ID_REPUESTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERV_REP_SERV">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="1" />
+          <End Role="SERVICIO_REPUESTO" Type="Self.SERVICIO_REPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Principal>
+            <Dependent Role="SERVICIO_REPUESTO">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICIO_CITA">
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITAS">
+              <PropertyRef Name="ID_CITA" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="ID_CITA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICIO_FACT">
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTURAS">
+              <PropertyRef Name="NUM_FACTURA" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="NUM_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="carcenterModelStoreContainer">
+          <EntitySet Name="CITAS" EntityType="Self.CITAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOMINIOS" EntityType="Self.DOMINIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FACTURAS" EntityType="Self.FACTURAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FOTOS" EntityType="Self.FOTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENSAJES" EntityType="Self.MENSAJES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONA_VEHICULO" EntityType="Self.PERSONA_VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PERSONAS" EntityType="Self.PERSONAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REPUESTOS" EntityType="Self.REPUESTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICIO_REPUESTO" EntityType="Self.SERVICIO_REPUESTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEHICULOS" EntityType="Self.VEHICULOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CITAS_PER_VEH" Association="Self.FK_CITAS_PER_VEH">
+            <End Role="PERSONA_VEHICULO" EntitySet="PERSONA_VEHICULO" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FOTOS_CITA" Association="Self.FK_FOTOS_CITA">
+            <End Role="CITAS" EntitySet="CITAS" />
+            <End Role="FOTOS" EntitySet="FOTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENSAJES_CITA" Association="Self.FK_MENSAJES_CITA">
+            <End Role="CITAS" EntitySet="CITAS" />
+            <End Role="MENSAJES" EntitySet="MENSAJES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PER_VEH_PER" Association="Self.FK_PER_VEH_PER">
+            <End Role="PERSONAS" EntitySet="PERSONAS" />
+            <End Role="PERSONA_VEHICULO" EntitySet="PERSONA_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PER_VEH_VEH" Association="Self.FK_PER_VEH_VEH">
+            <End Role="VEHICULOS" EntitySet="VEHICULOS" />
+            <End Role="PERSONA_VEHICULO" EntitySet="PERSONA_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERV_REP_REP" Association="Self.FK_SERV_REP_REP">
+            <End Role="REPUESTOS" EntitySet="REPUESTOS" />
+            <End Role="SERVICIO_REPUESTO" EntitySet="SERVICIO_REPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERV_REP_SERV" Association="Self.FK_SERV_REP_SERV">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="SERVICIO_REPUESTO" EntitySet="SERVICIO_REPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICIO_CITA" Association="Self.FK_SERVICIO_CITA">
+            <End Role="CITAS" EntitySet="CITAS" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICIO_FACT" Association="Self.FK_SERVICIO_FACT">
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="carcenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CITAS">
+          <Key>
+            <PropertyRef Name="ID_CITA" />
+          </Key>
+          <Property Name="ID_CITA" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA_SOLICITUD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ESTADO_CITA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_CIERRE" Type="DateTime" Precision="3" />
+          <Property Name="DIAGNOSTICO" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="MOTIVO_CITA" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_PERSONA_VEHICULO" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PERSONA_VEHICULO" Relationship="Self.FK_CITAS_PER_VEH" FromRole="CITAS" ToRole="PERSONA_VEHICULO" />
+          <NavigationProperty Name="FOTOS" Relationship="Self.FK_FOTOS_CITA" FromRole="CITAS" ToRole="FOTOS" />
+          <NavigationProperty Name="MENSAJES" Relationship="Self.FK_MENSAJES_CITA" FromRole="CITAS" ToRole="MENSAJES" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.FK_SERVICIO_CITA" FromRole="CITAS" ToRole="SERVICIOS" />
+        </EntityType>
+        <EntityType Name="DOMINIOS">
+          <Key>
+            <PropertyRef Name="TIPO_DOMINIO" />
+            <PropertyRef Name="ID_DOMINIO" />
+          </Key>
+          <Property Name="TIPO_DOMINIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_DOMINIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VLR_DOMINIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FACTURAS">
+          <Key>
+            <PropertyRef Name="NUM_FACTURA" />
+          </Key>
+          <Property Name="NUM_FACTURA" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA_FACTURA" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.FK_SERVICIO_FACT" FromRole="FACTURAS" ToRole="SERVICIOS" />
+        </EntityType>
+        <EntityType Name="FOTOS">
+          <Key>
+            <PropertyRef Name="ID_FOTO" />
+          </Key>
+          <Property Name="ID_FOTO" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL_FOTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_CITA" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CITAS" Relationship="Self.FK_FOTOS_CITA" FromRole="FOTOS" ToRole="CITAS" />
+        </EntityType>
+        <EntityType Name="MENSAJES">
+          <Key>
+            <PropertyRef Name="ID_MENSAJE" />
+          </Key>
+          <Property Name="ID_MENSAJE" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESC_MENSAJE" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_MENSAJE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_CITA" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CITAS" Relationship="Self.FK_MENSAJES_CITA" FromRole="MENSAJES" ToRole="CITAS" />
+        </EntityType>
+        <EntityType Name="PERSONA_VEHICULO">
+          <Key>
+            <PropertyRef Name="ID_PERSONA_VEHICULO" />
+          </Key>
+          <Property Name="ID_PERSONA_VEHICULO" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PLACA" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDENTIFICACION" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="ESTADO_PROP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CITAS" Relationship="Self.FK_CITAS_PER_VEH" FromRole="PERSONA_VEHICULO" ToRole="CITAS" />
+          <NavigationProperty Name="PERSONAS" Relationship="Self.FK_PER_VEH_PER" FromRole="PERSONA_VEHICULO" ToRole="PERSONAS" />
+          <NavigationProperty Name="VEHICULOS" Relationship="Self.FK_PER_VEH_VEH" FromRole="PERSONA_VEHICULO" ToRole="VEHICULOS" />
+        </EntityType>
+        <EntityType Name="PERSONAS">
+          <Key>
+            <PropertyRef Name="IDENTIFICACION" />
+          </Key>
+          <Property Name="IDENTIFICACION" Type="Decimal" Precision="15" Scale="0" Nullable="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESPECIALIDAD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_PERSONA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENA" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADO_PERSONA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PERSONA_VEHICULO" Relationship="Self.FK_PER_VEH_PER" FromRole="PERSONAS" ToRole="PERSONA_VEHICULO" />
+        </EntityType>
+        <EntityType Name="REPUESTOS">
+          <Key>
+            <PropertyRef Name="ID_REPUESTO" />
+          </Key>
+          <Property Name="ID_REPUESTO" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESC_MENSAJE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SERVICIO_REPUESTO" Relationship="Self.FK_SERV_REP_REP" FromRole="REPUESTOS" ToRole="SERVICIO_REPUESTO" />
+        </EntityType>
+        <EntityType Name="SERVICIO_REPUESTO">
+          <Key>
+            <PropertyRef Name="ID_SERVICIO_REPUESTO" />
+          </Key>
+          <Property Name="ID_SERVICIO_REPUESTO" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="VALOR_REPUESTO" Type="Decimal" Precision="7" Scale="0" Nullable="false" />
+          <Property Name="ID_SERVICIO" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="ID_REPUESTO" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="REPUESTOS" Relationship="Self.FK_SERV_REP_REP" FromRole="SERVICIO_REPUESTO" ToRole="REPUESTOS" />
+          <NavigationProperty Name="SERVICIOS" Relationship="Self.FK_SERV_REP_SERV" FromRole="SERVICIO_REPUESTO" ToRole="SERVICIOS" />
+        </EntityType>
+        <EntityType Name="SERVICIOS">
+          <Key>
+            <PropertyRef Name="ID_SERVICIO" />
+          </Key>
+          <Property Name="ID_SERVICIO" Type="Decimal" Precision="5" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESC_SERVICIO" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_SERVICIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIEMPO_ESTIMADO" Type="Decimal" Precision="3" Scale="1" Nullable="false" />
+          <Property Name="ESTADO_SERVICIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VALOR_SERVICIO" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="FECHA_SERVICIO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NUM_FACTURA" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="ID_CITA" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CITAS" Relationship="Self.FK_SERVICIO_CITA" FromRole="SERVICIOS" ToRole="CITAS" />
+          <NavigationProperty Name="FACTURAS" Relationship="Self.FK_SERVICIO_FACT" FromRole="SERVICIOS" ToRole="FACTURAS" />
+          <NavigationProperty Name="SERVICIO_REPUESTO" Relationship="Self.FK_SERV_REP_SERV" FromRole="SERVICIOS" ToRole="SERVICIO_REPUESTO" />
+        </EntityType>
+        <EntityType Name="VEHICULOS">
+          <Key>
+            <PropertyRef Name="PLACA" />
+          </Key>
+          <Property Name="PLACA" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MARCA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MODELO" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="COLOR" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_VEHICULO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PERSONA_VEHICULO" Relationship="Self.FK_PER_VEH_VEH" FromRole="VEHICULOS" ToRole="PERSONA_VEHICULO" />
+        </EntityType>
+        <Association Name="FK_CITAS_PER_VEH">
+          <End Role="PERSONA_VEHICULO" Type="Self.PERSONA_VEHICULO" Multiplicity="1" />
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA_VEHICULO">
+              <PropertyRef Name="ID_PERSONA_VEHICULO" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="ID_PERSONA_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FOTOS_CITA">
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="1" />
+          <End Role="FOTOS" Type="Self.FOTOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITAS">
+              <PropertyRef Name="ID_CITA" />
+            </Principal>
+            <Dependent Role="FOTOS">
+              <PropertyRef Name="ID_CITA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENSAJES_CITA">
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="1" />
+          <End Role="MENSAJES" Type="Self.MENSAJES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITAS">
+              <PropertyRef Name="ID_CITA" />
+            </Principal>
+            <Dependent Role="MENSAJES">
+              <PropertyRef Name="ID_CITA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICIO_CITA">
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CITAS">
+              <PropertyRef Name="ID_CITA" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="ID_CITA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICIO_FACT">
+          <End Role="FACTURAS" Type="Self.FACTURAS" Multiplicity="1" />
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FACTURAS">
+              <PropertyRef Name="NUM_FACTURA" />
+            </Principal>
+            <Dependent Role="SERVICIOS">
+              <PropertyRef Name="NUM_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PER_VEH_PER">
+          <End Role="PERSONAS" Type="Self.PERSONAS" Multiplicity="1" />
+          <End Role="PERSONA_VEHICULO" Type="Self.PERSONA_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONAS">
+              <PropertyRef Name="IDENTIFICACION" />
+            </Principal>
+            <Dependent Role="PERSONA_VEHICULO">
+              <PropertyRef Name="IDENTIFICACION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PER_VEH_VEH">
+          <End Role="VEHICULOS" Type="Self.VEHICULOS" Multiplicity="1" />
+          <End Role="PERSONA_VEHICULO" Type="Self.PERSONA_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEHICULOS">
+              <PropertyRef Name="PLACA" />
+            </Principal>
+            <Dependent Role="PERSONA_VEHICULO">
+              <PropertyRef Name="PLACA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERV_REP_REP">
+          <End Role="REPUESTOS" Type="Self.REPUESTOS" Multiplicity="1" />
+          <End Role="SERVICIO_REPUESTO" Type="Self.SERVICIO_REPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REPUESTOS">
+              <PropertyRef Name="ID_REPUESTO" />
+            </Principal>
+            <Dependent Role="SERVICIO_REPUESTO">
+              <PropertyRef Name="ID_REPUESTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERV_REP_SERV">
+          <End Role="SERVICIOS" Type="Self.SERVICIOS" Multiplicity="1" />
+          <End Role="SERVICIO_REPUESTO" Type="Self.SERVICIO_REPUESTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICIOS">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Principal>
+            <Dependent Role="SERVICIO_REPUESTO">
+              <PropertyRef Name="ID_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="carcenterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CITAS" EntityType="Self.CITAS" />
+          <EntitySet Name="DOMINIOS" EntityType="Self.DOMINIOS" />
+          <EntitySet Name="FACTURAS" EntityType="Self.FACTURAS" />
+          <EntitySet Name="FOTOS" EntityType="Self.FOTOS" />
+          <EntitySet Name="MENSAJES" EntityType="Self.MENSAJES" />
+          <EntitySet Name="PERSONA_VEHICULO" EntityType="Self.PERSONA_VEHICULO" />
+          <EntitySet Name="PERSONAS" EntityType="Self.PERSONAS" />
+          <EntitySet Name="REPUESTOS" EntityType="Self.REPUESTOS" />
+          <EntitySet Name="SERVICIO_REPUESTO" EntityType="Self.SERVICIO_REPUESTO" />
+          <EntitySet Name="SERVICIOS" EntityType="Self.SERVICIOS" />
+          <EntitySet Name="VEHICULOS" EntityType="Self.VEHICULOS" />
+          <AssociationSet Name="FK_CITAS_PER_VEH" Association="Self.FK_CITAS_PER_VEH">
+            <End Role="PERSONA_VEHICULO" EntitySet="PERSONA_VEHICULO" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FOTOS_CITA" Association="Self.FK_FOTOS_CITA">
+            <End Role="CITAS" EntitySet="CITAS" />
+            <End Role="FOTOS" EntitySet="FOTOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENSAJES_CITA" Association="Self.FK_MENSAJES_CITA">
+            <End Role="CITAS" EntitySet="CITAS" />
+            <End Role="MENSAJES" EntitySet="MENSAJES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICIO_CITA" Association="Self.FK_SERVICIO_CITA">
+            <End Role="CITAS" EntitySet="CITAS" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICIO_FACT" Association="Self.FK_SERVICIO_FACT">
+            <End Role="FACTURAS" EntitySet="FACTURAS" />
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PER_VEH_PER" Association="Self.FK_PER_VEH_PER">
+            <End Role="PERSONAS" EntitySet="PERSONAS" />
+            <End Role="PERSONA_VEHICULO" EntitySet="PERSONA_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PER_VEH_VEH" Association="Self.FK_PER_VEH_VEH">
+            <End Role="VEHICULOS" EntitySet="VEHICULOS" />
+            <End Role="PERSONA_VEHICULO" EntitySet="PERSONA_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERV_REP_REP" Association="Self.FK_SERV_REP_REP">
+            <End Role="REPUESTOS" EntitySet="REPUESTOS" />
+            <End Role="SERVICIO_REPUESTO" EntitySet="SERVICIO_REPUESTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERV_REP_SERV" Association="Self.FK_SERV_REP_SERV">
+            <End Role="SERVICIOS" EntitySet="SERVICIOS" />
+            <End Role="SERVICIO_REPUESTO" EntitySet="SERVICIO_REPUESTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="carcenterModelStoreContainer" CdmEntityContainer="carcenterEntities">
+          <EntitySetMapping Name="CITAS">
+            <EntityTypeMapping TypeName="carcenterModel.CITAS">
+              <MappingFragment StoreEntitySet="CITAS">
+                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+                <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+                <ScalarProperty Name="ESTADO_CITA" ColumnName="ESTADO_CITA" />
+                <ScalarProperty Name="FECHA_CIERRE" ColumnName="FECHA_CIERRE" />
+                <ScalarProperty Name="DIAGNOSTICO" ColumnName="DIAGNOSTICO" />
+                <ScalarProperty Name="MOTIVO_CITA" ColumnName="MOTIVO_CITA" />
+                <ScalarProperty Name="ID_PERSONA_VEHICULO" ColumnName="ID_PERSONA_VEHICULO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOMINIOS">
+            <EntityTypeMapping TypeName="carcenterModel.DOMINIOS">
+              <MappingFragment StoreEntitySet="DOMINIOS">
+                <ScalarProperty Name="TIPO_DOMINIO" ColumnName="TIPO_DOMINIO" />
+                <ScalarProperty Name="ID_DOMINIO" ColumnName="ID_DOMINIO" />
+                <ScalarProperty Name="VLR_DOMINIO" ColumnName="VLR_DOMINIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURAS">
+            <EntityTypeMapping TypeName="carcenterModel.FACTURAS">
+              <MappingFragment StoreEntitySet="FACTURAS">
+                <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
+                <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FOTOS">
+            <EntityTypeMapping TypeName="carcenterModel.FOTOS">
+              <MappingFragment StoreEntitySet="FOTOS">
+                <ScalarProperty Name="ID_FOTO" ColumnName="ID_FOTO" />
+                <ScalarProperty Name="URL_FOTO" ColumnName="URL_FOTO" />
+                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENSAJES">
+            <EntityTypeMapping TypeName="carcenterModel.MENSAJES">
+              <MappingFragment StoreEntitySet="MENSAJES">
+                <ScalarProperty Name="ID_MENSAJE" ColumnName="ID_MENSAJE" />
+                <ScalarProperty Name="DESC_MENSAJE" ColumnName="DESC_MENSAJE" />
+                <ScalarProperty Name="FECHA_MENSAJE" ColumnName="FECHA_MENSAJE" />
+                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSONA_VEHICULO">
+            <EntityTypeMapping TypeName="carcenterModel.PERSONA_VEHICULO">
+              <MappingFragment StoreEntitySet="PERSONA_VEHICULO">
+                <ScalarProperty Name="ID_PERSONA_VEHICULO" ColumnName="ID_PERSONA_VEHICULO" />
+                <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+                <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+                <ScalarProperty Name="ESTADO_PROP" ColumnName="ESTADO_PROP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERSONAS">
+            <EntityTypeMapping TypeName="carcenterModel.PERSONAS">
+              <MappingFragment StoreEntitySet="PERSONAS">
+                <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="ESPECIALIDAD" ColumnName="ESPECIALIDAD" />
+                <ScalarProperty Name="TIPO_PERSONA" ColumnName="TIPO_PERSONA" />
+                <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+                <ScalarProperty Name="ESTADO_PERSONA" ColumnName="ESTADO_PERSONA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REPUESTOS">
+            <EntityTypeMapping TypeName="carcenterModel.REPUESTOS">
+              <MappingFragment StoreEntitySet="REPUESTOS">
+                <ScalarProperty Name="ID_REPUESTO" ColumnName="ID_REPUESTO" />
+                <ScalarProperty Name="DESC_MENSAJE" ColumnName="DESC_MENSAJE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICIO_REPUESTO">
+            <EntityTypeMapping TypeName="carcenterModel.SERVICIO_REPUESTO">
+              <MappingFragment StoreEntitySet="SERVICIO_REPUESTO">
+                <ScalarProperty Name="ID_SERVICIO_REPUESTO" ColumnName="ID_SERVICIO_REPUESTO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="VALOR_REPUESTO" ColumnName="VALOR_REPUESTO" />
+                <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+                <ScalarProperty Name="ID_REPUESTO" ColumnName="ID_REPUESTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICIOS">
+            <EntityTypeMapping TypeName="carcenterModel.SERVICIOS">
+              <MappingFragment StoreEntitySet="SERVICIOS">
+                <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+                <ScalarProperty Name="DESC_SERVICIO" ColumnName="DESC_SERVICIO" />
+                <ScalarProperty Name="TIPO_SERVICIO" ColumnName="TIPO_SERVICIO" />
+                <ScalarProperty Name="TIEMPO_ESTIMADO" ColumnName="TIEMPO_ESTIMADO" />
+                <ScalarProperty Name="ESTADO_SERVICIO" ColumnName="ESTADO_SERVICIO" />
+                <ScalarProperty Name="VALOR_SERVICIO" ColumnName="VALOR_SERVICIO" />
+                <ScalarProperty Name="FECHA_SERVICIO" ColumnName="FECHA_SERVICIO" />
+                <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
+                <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEHICULOS">
+            <EntityTypeMapping TypeName="carcenterModel.VEHICULOS">
+              <MappingFragment StoreEntitySet="VEHICULOS">
+                <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="TIPO_VEHICULO" ColumnName="TIPO_VEHICULO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

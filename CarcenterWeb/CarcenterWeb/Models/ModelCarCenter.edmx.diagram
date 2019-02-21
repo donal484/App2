@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e8bd5d05a30439fb3a559471b104280" Name="Diagram1">
+        <EntityTypeShape EntityType="carcenterModel.CITAS" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.DOMINIOS" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.FACTURAS" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.FOTOS" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.MENSAJES" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.PERSONA_VEHICULO" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.PERSONAS" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.REPUESTOS" Width="1.5" PointX="10.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.SERVICIO_REPUESTO" Width="1.5" PointX="12.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.SERVICIOS" Width="1.5" PointX="10.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="carcenterModel.VEHICULOS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="carcenterModel.FK_CITAS_PER_VEH" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_FOTOS_CITA" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_MENSAJES_CITA" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_SERVICIO_CITA" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_SERVICIO_FACT" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_PER_VEH_PER" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_PER_VEH_VEH" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_SERV_REP_REP" ManuallyRouted="false" />
+        <AssociationConnector Association="carcenterModel.FK_SERV_REP_SERV" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

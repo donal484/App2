@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="carcenterModelStoreContainer" CdmEntityContainer="carcenterEntities">
+    <EntitySetMapping Name="CITAS">
+      <EntityTypeMapping TypeName="carcenterModel.CITAS">
+        <MappingFragment StoreEntitySet="CITAS">
+          <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+          <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+          <ScalarProperty Name="ESTADO_CITA" ColumnName="ESTADO_CITA" />
+          <ScalarProperty Name="FECHA_CIERRE" ColumnName="FECHA_CIERRE" />
+          <ScalarProperty Name="DIAGNOSTICO" ColumnName="DIAGNOSTICO" />
+          <ScalarProperty Name="MOTIVO_CITA" ColumnName="MOTIVO_CITA" />
+          <ScalarProperty Name="ID_PERSONA_VEHICULO" ColumnName="ID_PERSONA_VEHICULO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOMINIOS">
+      <EntityTypeMapping TypeName="carcenterModel.DOMINIOS">
+        <MappingFragment StoreEntitySet="DOMINIOS">
+          <ScalarProperty Name="TIPO_DOMINIO" ColumnName="TIPO_DOMINIO" />
+          <ScalarProperty Name="ID_DOMINIO" ColumnName="ID_DOMINIO" />
+          <ScalarProperty Name="VLR_DOMINIO" ColumnName="VLR_DOMINIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FACTURAS">
+      <EntityTypeMapping TypeName="carcenterModel.FACTURAS">
+        <MappingFragment StoreEntitySet="FACTURAS">
+          <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
+          <ScalarProperty Name="FECHA_FACTURA" ColumnName="FECHA_FACTURA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FOTOS">
+      <EntityTypeMapping TypeName="carcenterModel.FOTOS">
+        <MappingFragment StoreEntitySet="FOTOS">
+          <ScalarProperty Name="ID_FOTO" ColumnName="ID_FOTO" />
+          <ScalarProperty Name="URL_FOTO" ColumnName="URL_FOTO" />
+          <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENSAJES">
+      <EntityTypeMapping TypeName="carcenterModel.MENSAJES">
+        <MappingFragment StoreEntitySet="MENSAJES">
+          <ScalarProperty Name="ID_MENSAJE" ColumnName="ID_MENSAJE" />
+          <ScalarProperty Name="DESC_MENSAJE" ColumnName="DESC_MENSAJE" />
+          <ScalarProperty Name="FECHA_MENSAJE" ColumnName="FECHA_MENSAJE" />
+          <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONA_VEHICULO">
+      <EntityTypeMapping TypeName="carcenterModel.PERSONA_VEHICULO">
+        <MappingFragment StoreEntitySet="PERSONA_VEHICULO">
+          <ScalarProperty Name="ID_PERSONA_VEHICULO" ColumnName="ID_PERSONA_VEHICULO" />
+          <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+          <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+          <ScalarProperty Name="ESTADO_PROP" ColumnName="ESTADO_PROP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERSONAS">
+      <EntityTypeMapping TypeName="carcenterModel.PERSONAS">
+        <MappingFragment StoreEntitySet="PERSONAS">
+          <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+          <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+          <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+          <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+          <ScalarProperty Name="ESPECIALIDAD" ColumnName="ESPECIALIDAD" />
+          <ScalarProperty Name="TIPO_PERSONA" ColumnName="TIPO_PERSONA" />
+          <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+          <ScalarProperty Name="ESTADO_PERSONA" ColumnName="ESTADO_PERSONA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REPUESTOS">
+      <EntityTypeMapping TypeName="carcenterModel.REPUESTOS">
+        <MappingFragment StoreEntitySet="REPUESTOS">
+          <ScalarProperty Name="ID_REPUESTO" ColumnName="ID_REPUESTO" />
+          <ScalarProperty Name="DESC_MENSAJE" ColumnName="DESC_MENSAJE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICIO_REPUESTO">
+      <EntityTypeMapping TypeName="carcenterModel.SERVICIO_REPUESTO">
+        <MappingFragment StoreEntitySet="SERVICIO_REPUESTO">
+          <ScalarProperty Name="ID_SERVICIO_REPUESTO" ColumnName="ID_SERVICIO_REPUESTO" />
+          <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+          <ScalarProperty Name="VALOR_REPUESTO" ColumnName="VALOR_REPUESTO" />
+          <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+          <ScalarProperty Name="ID_REPUESTO" ColumnName="ID_REPUESTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICIOS">
+      <EntityTypeMapping TypeName="carcenterModel.SERVICIOS">
+        <MappingFragment StoreEntitySet="SERVICIOS">
+          <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
+          <ScalarProperty Name="DESC_SERVICIO" ColumnName="DESC_SERVICIO" />
+          <ScalarProperty Name="TIPO_SERVICIO" ColumnName="TIPO_SERVICIO" />
+          <ScalarProperty Name="TIEMPO_ESTIMADO" ColumnName="TIEMPO_ESTIMADO" />
+          <ScalarProperty Name="ESTADO_SERVICIO" ColumnName="ESTADO_SERVICIO" />
+          <ScalarProperty Name="VALOR_SERVICIO" ColumnName="VALOR_SERVICIO" />
+          <ScalarProperty Name="FECHA_SERVICIO" ColumnName="FECHA_SERVICIO" />
+          <ScalarProperty Name="NUM_FACTURA" ColumnName="NUM_FACTURA" />
+          <ScalarProperty Name="ID_CITA" ColumnName="ID_CITA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEHICULOS">
+      <EntityTypeMapping TypeName="carcenterModel.VEHICULOS">
+        <MappingFragment StoreEntitySet="VEHICULOS">
+          <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+          <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+          <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="TIPO_VEHICULO" ColumnName="TIPO_VEHICULO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

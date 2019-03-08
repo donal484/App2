@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Agregar Dominio";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-12">
+        <!--
+        Inicio del formulario de insercion de dominio
+            este va a tener unos parametros
+            1. Accion que voy a llamar (puedo llamar 2 (add e index))
+            2. Controlador que estoy usando que se llama dominios
+            3. El metodo (Get o post)
+            4. Cualqiuier parametro que quiera pasar al formulario
+        -->
+        @using (Html.BeginForm("Add", "Dominios", FormMethod.Post, new { role = "Form " }))//Creamos el formulario a traves de Razor
+        {
+            <!--
+            helper de seguridad para evitar invocaciones al form desde  fuera de la app    
+            -->
+            @Html.AntiForgeryToken()
+            <!--
+            Helper para mostrar mensajes de error producidos por dataAnnotations    
+            -->
+            @Html.ValidationMessage("Error",new { @class="text-danger"})
+        }
+    </div>
+
+</div>
+

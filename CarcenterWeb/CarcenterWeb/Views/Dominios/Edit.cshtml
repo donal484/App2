@@ -1,0 +1,50 @@
+﻿@model CarcenterWeb.Models.DTOs.DominiosDTO
+@{
+    ViewBag.Title = "Editar Dominio";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-12">
+        <!--
+        Inicio del formulario de insercion de dominio
+            este va a tener unos parametros
+            1. Accion que voy a llamar (puedo llamar 2 (add e index))
+            2. Controlador que estoy usando que se llama dominios
+            3. El metodo (Get o post)
+            4. Cualqiuier parametro que quiera pasar al formulario
+        -->
+        @using (Html.BeginForm("Edit", "Dominios", FormMethod.Post, new { role = "Form " }))//Creamos el formulario a traves de Razor
+        {
+            <!--
+            helper de seguridad para evitar invocaciones al form desde  fuera de la app
+            -->
+            @Html.AntiForgeryToken()
+            <!--
+            Helper para mostrar mensajes de error producidos por dataAnnotations
+            -->
+            @Html.ValidationMessage("Error", new { @class = "text-danger" })
+
+            <!-- MOSTRAR LABEL PARA EL ATRIBUTO ID como se especifico en el data annotation-->
+            @Html.LabelFor(d => d.TipoDominio) //un apuntador direcciona un objeto a donde quiero enviar la info
+                                            @Html.TextBoxFor(d => d.TipoDominio, new { @class = "form-control", @readonly="readonly"})
+                                            @Html.ValidationMessage("TipoDominio", new { @class = "text-danger" })
+                                            <br />
+
+                                            @Html.LabelFor(d => d.IdDominio) //un apuntador direcciona un objeto a donde quiero enviar la info
+                                            @Html.TextBoxFor(d => d.IdDominio, new { @class = "form-control", @readonly = "readonly" })
+                                            @Html.ValidationMessage("IdDominio", new { @class = "text-danger" })
+                                            <br />
+
+                                            @Html.LabelFor(d => d.VlrDominio) //un apuntador direcciona un objeto a donde quiero enviar la info
+                                            @Html.TextBoxFor(d => d.VlrDominio, new { @class = "form-control" })
+                                            @Html.ValidationMessage("VlrDominio", new { @class = "text-danger" })
+                                            <br />
+                                            <div style="text-align:right">
+                                                <input type="submit" class="btn btn-success" value="Guardar" />
+
+                                            </div>
+        }
+    </div>
+
+</div>

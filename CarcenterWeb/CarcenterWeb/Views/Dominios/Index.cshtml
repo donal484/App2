@@ -5,7 +5,14 @@
 }
 
 <h2>Dominios</h2>
+<div class="row">
+    <div class="col-md-12">
+        <input type="button" class="btn-primary" value="Nuevo" 
+        onclick="document.location.href='@Url.Content("~/Dominios/Add")'" />
+    </div>
 
+
+</div>
 <div class="row">
     <div class="col-lg-12">
         <table class="table table-bordered table-responsive">
@@ -13,12 +20,20 @@
                 <th>Tipo Dominio</th>
                 <th> Id Dominio</th>
                 <th> Valor Dominio</th>
+                <th>Acciones</th>
             </tr>
             @foreach (var oDominio in Model) {
                 <tr>
                     <td> @oDominio.TipoDominio</td>
                     <td> @oDominio.IdDominio</td>
                     <td> @oDominio.VlrDominio</td>
+                    <td>
+                        <input type="button" value="Editar" class="btn btn-default"
+                               onclick="document.location.href='@Url.Content("~/Dominios/Edit/?tipoDominio="+
+                                                               oDominio.TipoDominio+"&idDominio="+oDominio.IdDominio)'" />
+                        <input type="button"value="Eliminar" class="btn btn-danger"
+                               onclick="jsDelete('@oDominio.TipoDominio','@oDominio.IdDominio');" />
+                    </td>
                 </tr>
             }
         </table>
@@ -26,3 +41,7 @@
     </div>
 
 </div>
+<script>
+    function jsDelete(tipo, id) {
+    }
+</script>
